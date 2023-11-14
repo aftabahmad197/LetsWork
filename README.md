@@ -1,9 +1,15 @@
-**Project Title:** LetsWork
+# Project Title: LetsWork
 
-**Project Description:** a freelance marketplace just like Fiverr and Freelancer with some basic variations and changes. It is just very similar to website cloning.
+## Project Description
+LetsWork is a freelance marketplace project inspired by platforms like Fiverr and Freelancer. The project incorporates some basic variations and changes while maintaining the essential functionalities of popular freelancing websites. This endeavor serves as a practical exploration of software engineering principles, focusing on the development of a moblie app using Flutter for the frontend while Node js for the backend and utilizing Mongo DB for database management.
 
-**Project technology:** WPF + MS SQL
+## Project Technology
+- Flutter (Dart language)
+- Node JS
+- Mongo Db
 
-**Project Devoloper:** Abdullah Aamir
+## Project Developer
+- **Developer:** Abdullah Aamir
 
-**Course Name:** Software Engineering
+## Course Information
+- **Course Name:** Software Engineering
