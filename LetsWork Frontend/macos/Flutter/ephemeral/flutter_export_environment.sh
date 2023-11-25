@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=D:\University\CODE\Semester 5\MAD\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\University\CODE\Semester 5\SE\LetsWork Project\LetsWork Code\LetsWork Frontend"
+export "FLUTTER_APPLICATION_PATH=D:\University\CODE\Semester 5\SE\LetsWork Project\LetsWork Code\Frontend"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
