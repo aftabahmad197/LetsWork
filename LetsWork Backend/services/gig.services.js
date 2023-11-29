@@ -37,9 +37,19 @@ async function editGig(gigId, updatedGigData) {
   }
 }
 
+async function deleteGig(gigId) {
+  try {
+    return await gigModel.findByIdAndDelete(gigId);
+  } catch (error) {
+    console.error('Error deleting gig from database:', error);
+    throw error;
+  }
+}
+
 module.exports = {
   addGig,
   getAllGigs,
   editGig,
-  getAllGigsBySeller
+  getAllGigsBySeller,
+  deleteGig,
 };

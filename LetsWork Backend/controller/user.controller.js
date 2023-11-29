@@ -37,9 +37,21 @@ exports.login = async (req, res) => {
     
 }
 
-exports.getUser = (userId) => {
-    return userService.getUserById(userId);
-  };
+exports.getUser = async (req, res) => {
+    try {
+        const {email} = req.body;
+        const result = await userServices.findUserbyemail(email);
+        res.status(200).json({
+            message: "User found successfully",
+            data: result
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Error finding user",
+            error
+        });
+    }
+}
 
 
 exports.updatePassword = async (req, res) => {
@@ -73,19 +85,19 @@ exports.updateName = async (req, res) => {
         });
     }
 }
-exports.updatePic = async (req, res) => {
+
+exports.updateProfilePic = async (req, res) => {
     try {
-        const {email} = req.body;
-        const {filename} = req.file;
-        const result = await userServices.updatePic(email, filename);
+        const {email, profilePic} = req.body;
+        const result = await userServices.updatePic(email, profilePic);
         res.status(200).json({
-            message: "Image updated successfully",
+            message: "Profile picture updated successfully",
             data: result
         });
     } catch (error) {
         res.status(500).json({
-            message: "Error updating image",
-            error
+            message: "Error updating profile picture",
+            error: error.message
         });
     }
 }

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:frontend/Pages/Forget%20Password/findUser.dart';
-import 'package:frontend/Pages/buyerHomePage.dart';
-import 'package:frontend/Pages/login.dart';
-import 'package:frontend/Pages/signup.dart';
+import 'package:frontend/Pages/User%20Authentication%20+%20Authorization/login.dart';
 void main() => runApp(
   DevicePreview(
   builder: (context) => MyApp(),

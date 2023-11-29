@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:frontend/Pages/User%20Authentication%20+%20Authorization/login.dart';
 import 'package:http/http.dart' as http;
 import '../../config/config.dart';
-import '../login.dart';
 
 class resetPassword extends StatefulWidget {
   final String email;

@@ -40,3 +40,13 @@ exports.editGig = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+exports.deleteGig = async (req, res) => {
+  try {
+    const deletedGig = await gigService.deleteGig(req.params.id);
+    res.json(deletedGig);
+  } catch (error) {
+    console.error('Error deleting gig:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
