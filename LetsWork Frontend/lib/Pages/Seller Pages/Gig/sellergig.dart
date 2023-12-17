@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -120,7 +121,8 @@ class _sellerGigState extends State<sellerGig> {
   }
 
   Future<void> _removeGig(int index) async {
-    final response = await http.delete(Uri.parse(deleteGig + gigs[index]['_id']));
+    final response =
+        await http.delete(Uri.parse(deleteGig + gigs[index]['_id']));
 
     if (response.statusCode == 200) {
       setState(() {
@@ -159,8 +161,8 @@ class _sellerGigState extends State<sellerGig> {
       ));
     }
   }
-  //                      functions
 
+  //                      functions
 
   @override
   Widget build(BuildContext context) {
@@ -173,56 +175,57 @@ class _sellerGigState extends State<sellerGig> {
       body: SingleChildScrollView(
         child: gigs.isEmpty
             ? Center(
-          child: Text('No gigs available.'),
-        )
+                child: Text('No gigs available.'),
+              )
             : ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: gigs.length,
-          itemBuilder: (context, index) {
-            return Dismissible(
-              key: Key(gigs[index]['_id']),
-              background: Container(
-                color: Colors.red,
-                child: Icon(Icons.delete, color: Colors.white),
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(right: 16.0),
-              ),
-              onDismissed: (direction) {
-                _removeGig(index);
-              },
-              child: Card(
-                elevation: 5.0,
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: ListTile(
-                  title: Text(
-                    gigs[index]['title'],
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(gigs[index]['description']),
-                      SizedBox(height: 8.0),
-                      Text('Price: \$${gigs[index]['price']}'),
-                      Text(
-                          'Delivery Time: ${gigs[index]['deliveryTime']} days'),
-                    ],
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.close),
-                    onPressed: () {
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: gigs.length,
+                itemBuilder: (context, index) {
+                  return Dismissible(
+                    key: Key(gigs[index]['_id']),
+                    background: Container(
+                      color: Colors.red,
+                      child: Icon(Icons.delete, color: Colors.white),
+                      alignment: Alignment.centerRight,
+                      padding: EdgeInsets.only(right: 16.0),
+                    ),
+                    onDismissed: (direction) {
                       _removeGig(index);
                     },
-                  ),
-                  onTap: () {
-                    _editGig(index);
-                  },
-                ),
+                    child: Card(
+                      elevation: 5.0,
+                      margin:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                      child: ListTile(
+                        title: Text(
+                          gigs[index]['title'],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(gigs[index]['description']),
+                            SizedBox(height: 8.0),
+                            Text('Price: \$${gigs[index]['price']}'),
+                            Text(
+                                'Delivery Time: ${gigs[index]['deliveryTime']} days'),
+                          ],
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () {
+                            _removeGig(index);
+                          },
+                        ),
+                        onTap: () {
+                          _editGig(index);
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -232,6 +235,7 @@ class _sellerGigState extends State<sellerGig> {
       ),
     );
   }
-
-
 }
+
+
+

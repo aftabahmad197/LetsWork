@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:frontend/Config/config.dart';
+import '../../../config/config.dart';
+import 'JobdetailsPage.dart';
 
 class jobDisplay extends StatefulWidget {
   final String? email; // Receive user ID
@@ -16,7 +17,7 @@ class _jobDisplayState extends State<jobDisplay> {
   List<Map<String, dynamic>> jobs = [];
   Future<void> _getAllJobs() async {
     try {
-      final response = await http.get(Uri.parse(getJobs)); // Update to the appropriate API endpoint
+      final response = await http.get(Uri.parse(getalljobsExceptSeller + widget.email!)); // Update to the appropriate API endpoint
 
       if (response.statusCode == 200) {
         final List<dynamic> jobList = jsonDecode(response.body);
@@ -97,40 +98,7 @@ class _jobDisplayState extends State<jobDisplay> {
   void _showJobDetails(Map<String, dynamic> job) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => JobDetailsPage(job: job)),
-    );
-  }
-}
-
-class JobDetailsPage extends StatelessWidget {
-  final Map<String, dynamic> job;
-
-  const JobDetailsPage({Key? key, required this.job}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Job Details'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              job['title'],
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-            ),
-            SizedBox(height: 8.0),
-            Text(job['description']),
-            SizedBox(height: 8.0),
-            Text('Budget: \$${job['budget']}'),
-            Text('Deadline: ${job['deadline']}'),
-            // Add more details as needed
-          ],
-        ),
-      ),
+      MaterialPageRoute(builder: (context) => JobDetailsPage(email: widget.email, job: job)),
     );
   }
 }

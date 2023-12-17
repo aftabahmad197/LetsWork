@@ -1,3 +1,74 @@
-2023/11/26-19:16:46.374 3754 Reusing MANIFEST C:\Users\conta\AppData\Local\Temp\flutter_tools.94780b99\flutter_tools_chrome_device.5a930b6\Default\Local Storage\leveldb/MANIFEST-000001
-2023/11/26-19:16:46.379 3754 Recovering log #3
-2023/11/26-19:16:46.385 3754 Reusing old log C:\Users\conta\AppData\Local\Temp\flutter_tools.94780b99\flutter_tools_chrome_device.5a930b6\Default\Local Storage\leveldb/000003.log 
+2023/12/17-21:06:29.760 4704 Reusing MANIFEST C:\Users\ABDULL~1\AppData\Local\Temp\flutter_tools.e96ea61a\flutter_tools_chrome_device.cb8459f0\Default\Local Storage\leveldb/MANIFEST-000001
+2023/12/17-21:06:29.767 4704 Recovering log #79
+2023/12/17-21:06:29.773 4704 Level-0 table #84: started
+2023/12/17-21:06:29.793 4704 Level-0 table #84: 1479889 bytes OK
+2023/12/17-21:06:29.805 4704 Delete type=0 #3
+2023/12/17-21:06:29.805 4704 Delete type=0 #14
+2023/12/17-21:06:29.805 4704 Delete type=2 #16
+2023/12/17-21:06:29.805 4704 Delete type=2 #18
+2023/12/17-21:06:29.805 4704 Delete type=0 #19
+2023/12/17-21:06:29.805 4704 Delete type=0 #25
+2023/12/17-21:06:29.805 4704 Delete type=2 #27
+2023/12/17-21:06:29.806 4704 Delete type=2 #28
+2023/12/17-21:06:29.806 4704 Delete type=2 #58
+2023/12/17-21:06:29.806 4704 Delete type=2 #59
+2023/12/17-21:06:29.806 4704 Delete type=2 #61
+2023/12/17-21:06:29.806 4704 Delete type=0 #62
+2023/12/17-21:06:29.807 4704 Delete type=2 #63
+2023/12/17-21:06:29.807 4704 Delete type=2 #69
+2023/12/17-21:06:29.807 4704 Delete type=2 #70
+2023/12/17-21:06:29.807 4704 Delete type=0 #72
+2023/12/17-21:06:29.807 4704 Delete type=2 #73
+2023/12/17-21:06:29.807 4704 Delete type=0 #79
+2023/12/17-21:14:57.897 4704 Level-0 table #87: started
+2023/12/17-21:14:57.920 4704 Level-0 table #87: 1479889 bytes OK
+2023/12/17-21:14:57.924 4704 Delete type=0 #85
+2023/12/17-21:23:25.913 4704 Level-0 table #89: started
+2023/12/17-21:23:25.926 4704 Level-0 table #89: 1479889 bytes OK
+2023/12/17-21:23:25.929 4704 Delete type=0 #86
+2023/12/17-21:31:53.932 4704 Level-0 table #91: started
+2023/12/17-21:31:53.948 4704 Level-0 table #91: 1479889 bytes OK
+2023/12/17-21:31:53.951 4704 Delete type=0 #88
+2023/12/17-21:31:53.951 4704 Compacting 4@0 + 2@1 files
+2023/12/17-21:31:54.007 4704 Generated table #92@0: 11 keys, 3501303 bytes
+2023/12/17-21:31:54.086 4704 Generated table #93@0: 3 keys, 3472624 bytes
+2023/12/17-21:31:54.110 4704 Generated table #94@0: 1 keys, 1479838 bytes
+2023/12/17-21:31:54.110 4704 Compacted 4@0 + 2@1 files => 8453765 bytes
+2023/12/17-21:31:54.111 4704 compacted to: files[ 0 4 1 0 0 0 0 ]
+2023/12/17-21:31:54.112 4704 Delete type=2 #81
+2023/12/17-21:31:54.112 4704 Delete type=2 #82
+2023/12/17-21:31:54.112 4704 Delete type=2 #84
+2023/12/17-21:31:54.112 4704 Delete type=2 #87
+2023/12/17-21:31:54.112 4704 Delete type=2 #89
+2023/12/17-21:31:54.112 4704 Delete type=2 #91
+2023/12/17-21:40:21.937 4704 Level-0 table #96: started
+2023/12/17-21:40:21.964 4704 Level-0 table #96: 1479889 bytes OK
+2023/12/17-21:40:21.967 4704 Delete type=0 #90
+2023/12/17-21:48:49.947 4704 Level-0 table #98: started
+2023/12/17-21:48:49.960 4704 Level-0 table #98: 1479889 bytes OK
+2023/12/17-21:48:49.963 4704 Delete type=0 #95
+2023/12/17-22:00:22.739 4704 Level-0 table #100: started
+2023/12/17-22:00:22.744 4704 Level-0 table #100: 109617 bytes OK
+2023/12/17-22:00:22.748 4704 Delete type=0 #97
+2023/12/17-22:00:46.910 4704 Level-0 table #102: started
+2023/12/17-22:00:46.916 4704 Level-0 table #102: 109617 bytes OK
+2023/12/17-22:00:46.919 4704 Delete type=0 #99
+2023/12/17-22:00:46.919 4704 Compacting 4@0 + 3@1 files
+2023/12/17-22:00:46.971 4704 Generated table #103@0: 11 keys, 3501303 bytes
+2023/12/17-22:00:47.047 4704 Generated table #104@0: 3 keys, 3472624 bytes
+2023/12/17-22:00:47.057 4704 Generated table #105@0: 1 keys, 109572 bytes
+2023/12/17-22:00:47.057 4704 Compacted 4@0 + 3@1 files => 7083499 bytes
+2023/12/17-22:00:47.059 4704 compacted to: files[ 0 4 1 0 0 0 0 ]
+2023/12/17-22:00:47.060 4704 Delete type=2 #92
+2023/12/17-22:00:47.060 4704 Delete type=2 #93
+2023/12/17-22:00:47.060 4704 Delete type=2 #94
+2023/12/17-22:00:47.060 4704 Delete type=2 #96
+2023/12/17-22:00:47.060 4704 Delete type=2 #98
+2023/12/17-22:00:47.060 4704 Delete type=2 #100
+2023/12/17-22:00:47.060 4704 Delete type=2 #102
+2023/12/17-22:01:02.140 4704 Level-0 table #107: started
+2023/12/17-22:01:02.164 4704 Level-0 table #107: 1479889 bytes OK
+2023/12/17-22:01:02.167 4704 Delete type=0 #101
+2023/12/17-22:04:54.499 4704 Level-0 table #109: started
+2023/12/17-22:04:54.504 4704 Level-0 table #109: 109617 bytes OK
+2023/12/17-22:04:54.507 4704 Delete type=0 #106

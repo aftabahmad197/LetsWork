@@ -14,6 +14,7 @@ class buyerProfile extends StatefulWidget {
   final int? balance;
   final profilePic;
   final void Function(String, String, int) onUpdate;
+  final void Function(String) onProfilePicUpdate;
 
   const buyerProfile({
     Key? key,
@@ -23,6 +24,7 @@ class buyerProfile extends StatefulWidget {
     required this.balance,
     required this.profilePic,
     required this.onUpdate,
+    required this.onProfilePicUpdate,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,14 @@ class buyerProfile extends StatefulWidget {
 
 class _buyerProfileState extends State<buyerProfile> {
   //                           variables
-  late var _image = widget.profilePic;
+
+  var _image;
+  void initState() {
+    super.initState();
+    if (widget.profilePic != null) {
+      _image = base64Decode(widget.profilePic);
+    }
+  }
 
   //                           variables
   Future<void> _pickImage() async {
@@ -46,15 +55,16 @@ class _buyerProfileState extends State<buyerProfile> {
 
       // If user picks an image, update the state with the new image file
       setState(() {
-        _image = result.files.first;
+        _image = result.files.first.bytes!;
       });
 
       List<int> imageBytes = result.files.first.bytes!;
       String imageBase64 = base64Encode(imageBytes);
-
+      widget.onProfilePicUpdate(imageBase64);
       // Send the email and base64-encoded image to the server
       var regbody = {"email": widget.email, "profilePic": imageBase64};
-      var response = await http.post(Uri.parse(updateProfilePic),
+      var response = await http.patch(Uri.parse(updateProfilePic),
+          headers: {"Content-Type": "application/json"},
           body: jsonEncode(regbody));
       if (response.statusCode == 200) {
         print('Image uploaded successfully.');
@@ -69,7 +79,7 @@ class _buyerProfileState extends State<buyerProfile> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content:
-            Text('${response.body} Status code: ${response.statusCode}'),
+                Text('${response.body} Status code: ${response.statusCode}'),
           ),
         );
         // Handle the error as needed
@@ -90,11 +100,11 @@ class _buyerProfileState extends State<buyerProfile> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _controllerFirstName =
-    TextEditingController(text: widget.firstName);
+        TextEditingController(text: widget.firstName);
     TextEditingController _controllerLastName =
-    TextEditingController(text: widget.lastName);
+        TextEditingController(text: widget.lastName);
     TextEditingController _controllerBalance =
-    TextEditingController(text: widget.balance.toString());
+        TextEditingController(text: widget.balance.toString());
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -111,10 +121,9 @@ class _buyerProfileState extends State<buyerProfile> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: mainColor,
-
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: [
                           GestureDetector(
@@ -124,14 +133,14 @@ class _buyerProfileState extends State<buyerProfile> {
                               children: [
                                 if (_image != null)
                                   CircleAvatar(
-                                    radius: 50,
+                                    radius: 100,
                                     backgroundColor: Colors.transparent,
                                     child: ClipOval(
                                       child: SizedBox(
-                                        width: 180.0,
-                                        height: 180.0,
+                                        width: 200,
+                                        height: 200,
                                         child: Image.memory(
-                                          Uint8List.fromList(_image!.bytes!),
+                                          Uint8List.fromList(_image!),
                                           fit: BoxFit.fill,
                                         ),
                                       ),
@@ -139,8 +148,6 @@ class _buyerProfileState extends State<buyerProfile> {
                                   ),
                                 if (_image == null)
                                   Container(
-                                    width: 100,
-                                    height: 100,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Color(0xffe6e0ea),
@@ -156,12 +163,13 @@ class _buyerProfileState extends State<buyerProfile> {
                                       Icons.camera_alt,
                                       // Add your desired image icon here
                                       color: Colors.white,
-                                      size: 40,
+                                      size: 200,
                                     ),
                                   ),
                               ],
                             ),
                           ),
+                          SizedBox(height: 20),
                           Text(
                             widget.firstName!,
                             style: TextStyle(
@@ -198,14 +206,14 @@ class _buyerProfileState extends State<buyerProfile> {
                     ),
                     child: ListTile(
                       contentPadding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                       selectedColor: Colors.white,
-                      leading:
-                      Icon(Icons.account_circle, size: 40.0, color: mainColor),
+                      leading: Icon(Icons.account_circle,
+                          size: 40.0, color: mainColor),
                       title: Text(
                         'Account Information',
-                        style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
                         'Tap to view details',
@@ -239,4 +247,3 @@ class _buyerProfileState extends State<buyerProfile> {
     );
   }
 }
-

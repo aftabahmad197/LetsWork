@@ -21,7 +21,6 @@ class _findUserState extends State<findUser> {
   Color textColor = Colors.white;
   final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String _lowercaseEmail = '';
 
   //                     Variables
 
@@ -104,7 +103,6 @@ class _findUserState extends State<findUser> {
                               onChanged: (value) {
                                 setState(() {
                                   // Convert the entered email to lowercase and update the variable
-                                  _lowercaseEmail = value.toLowerCase();
                                 });
                               },
                               validator: (value) {

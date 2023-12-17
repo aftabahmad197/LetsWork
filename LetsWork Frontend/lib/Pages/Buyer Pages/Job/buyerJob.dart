@@ -93,7 +93,7 @@ class _buyerJobState extends State<buyerJob> {
             'category': jobData['category'],
             'buyer': userId,
             'budget': jobData['budget'],
-            'deadline': DateFormat('yyyy-MM-dd').format(jobData['deadline']),
+            'deadline': DateTime.parse(jobData['deadline']),
           }),
         );
         print(response.statusCode);
@@ -237,13 +237,13 @@ class _buyerJobState extends State<buyerJob> {
                       ),
                       child: ListTile(
                         title: Text(
-                          jobs[index]['title'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          "Title: " + jobs[index]['title'],
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(jobs[index]['description']),
+                            Text("Description: " + jobs[index]['description']),
                             SizedBox(height: 8.0),
                             Text('Budget: \$${jobs[index]['budget']}'),
                             Text(

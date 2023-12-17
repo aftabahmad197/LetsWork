@@ -9,7 +9,6 @@ router.post('/getUser', userController.getUser);
 router.post('/updatePassword', userController.updatePassword);
 router.post("/updateName", userController.updateName)
 router.put('/updateUser', userController.updateUser);
-router.post('/updateProfilePic', userController.updateProfilePic);
- 
+router.patch('/updateProfilePic', userController.updateProfilePic);
 
 module.exports = router;

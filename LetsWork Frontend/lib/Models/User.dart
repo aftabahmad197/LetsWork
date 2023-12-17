@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 class User{
   String? id;
   String? firstName;
@@ -17,7 +15,7 @@ class User{
       lastName: json['lastName'],
       email: json['email'],
       balance: json['balance'],
-      profilePic: json['profilePicture'],
+      profilePic: json['profilePic'],
     );
   }
 }

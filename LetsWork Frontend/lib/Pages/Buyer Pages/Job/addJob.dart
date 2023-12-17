@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 class AddJobBottomSheet extends StatefulWidget {
   final List<Map<String, dynamic>> categories;
   final Function(String) onCategoryChanged;
@@ -69,7 +68,7 @@ class _AddJobBottomSheetState extends State<AddJobBottomSheet> {
                   'description': descriptionController.text,
                   'category': selectedCategory,
                   'budget': int.parse(budgetController.text),
-                  'deadline': selectedDate,
+                  'deadline': selectedDate!,
                 });
               },
               child: Text('Add Job'),
@@ -90,8 +89,8 @@ class _AddJobBottomSheetState extends State<AddJobBottomSheet> {
           value: selectedCategory.isNotEmpty
               ? selectedCategory
               : widget.categories.isNotEmpty
-              ? widget.categories[0]['name']
-              : null,
+                  ? widget.categories[0]['name']
+                  : null,
           onChanged: (String? newValue) {
             setState(() {
               selectedCategory = newValue!;

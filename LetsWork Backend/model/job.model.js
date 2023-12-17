@@ -17,6 +17,10 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Seller: {
+    type: String,
+    default: "",
+  },
   budget: {
     type: Number,
     required: true,

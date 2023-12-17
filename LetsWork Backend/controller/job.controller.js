@@ -60,3 +60,36 @@ exports.deleteJob = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+exports.getAllJobsExceptSeller = async (req, res) => {
+  try {
+    const sellerEmail = req.params.seller;
+    const jobs = await jobService.getAllJobsExceptSeller(sellerEmail);
+    res.json(jobs);
+  } catch (error) {
+    console.error('Error getting all jobs except seller:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.addSellerToJob = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    const sellerEmail = req.body.seller;
+    const updatedJob = await jobService.addSellerToJob(jobId, sellerEmail);
+    res.json(updatedJob);
+  } catch (error) {
+    console.error('Error adding seller to job:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.getAllJobsWhereSeller = async (req, res) => {
+  try {
+    const jobs = await jobService.getAllJobsWhereSeller(req.params.Buyer);
+    res.json(jobs);
+  } catch (error) {
+    console.error('Error getting all jobs where seller:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

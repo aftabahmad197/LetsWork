@@ -1,3 +1,4 @@
+const { param } = require('../route/gig.route');
 const gigService = require('../services/gig.services');
 
 exports.addGig = async (req, res) => {
@@ -47,6 +48,37 @@ exports.deleteGig = async (req, res) => {
     res.json(deletedGig);
   } catch (error) {
     console.error('Error deleting gig:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.addBuyertoGig = async (req, res) => {
+  try {
+    const { gig, buyer } = req.body;
+    const gigdata = await gigService.addBuyertoGig(gig, buyer);
+    res.json(gig);
+  } catch (error) {
+    console.error('Error adding buyer to gig:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.getAllExceptBuyer = async (req, res) => {
+  try {
+    const gigs = await gigService.getAllExceptBuyer(req.params.buyer);
+    res.json(gigs);
+  } catch (error) {
+    console.error('Error getting all gigs:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.getAllGigsWhereBuyer = async (req, res) => {
+  try {
+    const gigs = await gigService.getAllGigsWhereBuyer(req.params.seller);
+    res.json(gigs);
+  } catch (error) {
+    console.error('Error getting all gigs:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }

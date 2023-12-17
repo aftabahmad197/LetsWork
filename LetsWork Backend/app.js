@@ -7,8 +7,8 @@ const jobRoutes = require('./route/job.route');
 const cors = require('cors');
 const app = express();
 
-app.use(bodyParser.json());
-
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use('/category', CategoryRoutes);
 app.use('/user', userRoutes);

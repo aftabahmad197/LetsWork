@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:frontend/Pages/Buyer%20Pages/Gig/gigDisplay.dart';
 import 'package:frontend/Pages/Buyer%20Pages/Profile/buyerProfile.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/config/config.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:http/http.dart' as http;
-import '../../Config/config.dart';
 import '../../Models/User.dart';
 import '../../Theme/ColorTheme.dart';
 import 'Job/buyerJob.dart';
@@ -25,6 +25,7 @@ class _buyerMainState extends State<buyerMain> {
   late PageController _pageController =
       PageController(initialPage: _currentIndex);
 
+  List<Map<String, dynamic>> notifications = []; // Add this line
   //                     Variables
 
   @override
@@ -33,6 +34,7 @@ class _buyerMainState extends State<buyerMain> {
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
     Map<String, dynamic> userDecode = jwtDecodedToken['user'];
     user = User.fromJson(userDecode);
+    
   }
 
   Future<void> updateBackend(
@@ -59,14 +61,95 @@ class _buyerMainState extends State<buyerMain> {
     }
   }
 
+  Future<void> fetchNotifications() async {
+    try {
+      final response = await http.get(
+        Uri.parse(getalljobswhereSeller + user.email!),
+      );
+      final List<dynamic> jobList = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        setState(() {
+          notifications = jobList
+              .cast<Map<String, dynamic>>()
+              .map((job) => {
+                    ...job,
+                    'deadline': DateTime.parse(job['deadline']),
+                  })
+              .toList();
+        });
+      } else {
+        print(
+            'Failed to fetch notifications. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Exception occurred while fetching notifications: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "LetsWork",
-          style: TextStyle(color: mainColor, fontSize: 35, fontFamily: "title"),
+        title: Row(
+          mainAxisAlignment:
+              MainAxisAlignment.center, // Center Row contents horizontally,,
+          children: [
+            Text(
+              "LetsWork",
+              style: TextStyle(
+                color: mainColor,
+                fontSize: 35,
+                fontFamily: "title",
+              ),
+            ),
+            SizedBox(width: 10),
+          ],
+        ),
+        actions: <Widget>[
+          Builder(
+            builder: (BuildContext context) {
+              // Using Builder to get a new context under the Scaffold
+              return IconButton(
+                icon: Icon(
+                    Icons.notifications), // Change this to your desired icon
+                onPressed: () {
+                  fetchNotifications();
+                  // Open the drawer using the new context
+                  Scaffold.of(context).openEndDrawer();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      endDrawer: Drawer(
+        child: Container(
+          width: MediaQuery.of(context).size.width *
+              0.8, // Set the width as needed
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Text(
+                  'Notifications',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
+                decoration: BoxDecoration(
+                  color: mainColor,
+                ),
+              ),
+              for (var notification in notifications)
+                ListTile(
+                  title: Text(
+                    "Job title: " + notification['title'],
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                  ),
+                  subtitle: Text(" Seller with this Email: " +
+                      notification['Seller'] +
+                      ' got your job'),
+                ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -101,20 +184,24 @@ class _buyerMainState extends State<buyerMain> {
             balance: user.balance,
           ),
           buyerProfile(
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            balance: user.balance,
-            profilePic: user.profilePic,
-            onUpdate: (newFirstName, newLastName, newBalance) {
-              setState(() {
-                user.firstName = newFirstName;
-                user.lastName = newLastName;
-                user.balance = newBalance;
-              });
-              updateBackend(newFirstName, newLastName, newBalance);
-            },
-          ),
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              balance: user.balance,
+              profilePic: user.profilePic,
+              onUpdate: (newFirstName, newLastName, newBalance) {
+                setState(() {
+                  user.firstName = newFirstName;
+                  user.lastName = newLastName;
+                  user.balance = newBalance;
+                });
+                updateBackend(newFirstName, newLastName, newBalance);
+              },
+              onProfilePicUpdate: (newProfilePic) {
+                setState(() {
+                  user.profilePic = newProfilePic;
+                });
+              }),
         ],
       ),
     );

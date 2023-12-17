@@ -63,9 +63,7 @@ class _resetPasswordState extends State<resetPassword> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     double containerWidth = screenWidth * 0.8;
-    double containerHeight = screenHeight * 0.5;
     return Scaffold(
       body: SafeArea(
           child: Center(

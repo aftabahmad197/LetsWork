@@ -16,6 +16,10 @@ const gigSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  buyer: {
+    type: [String],
+    default: "",
+  },
   price: {
     type: Number,
     required: true,
@@ -26,12 +30,15 @@ const gigSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+    default: "",
   },
 },
 {
     timestamps: true,
   }
 );
+
+
 
 const Gig = mongoose.model('Gig', gigSchema);
 

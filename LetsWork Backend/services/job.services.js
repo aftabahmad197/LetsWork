@@ -48,6 +48,32 @@ async function getAllJobsByBuyer(buyer) {
   }
 }
 
+async function getAllJobsWhereSeller(seller) {
+  try {
+    var jobs = await jobModel.find({
+      $and: [
+        { Seller: { $ne: '' } }, // Seller is not equal to ""
+        { buyer: buyer },        // buyer is equal to the specified buyer
+      ]
+    });
+    if (!jobs) throw new Error("No jobs found");
+    return jobs;
+  } catch (error) {
+    console.error('Error getting all jobs from database:', error);
+    throw error;
+  }
+}
+async function getAllJobsExceptSeller(seller) {
+  try {
+    var jobs = await jobModel.find({ Seller: { $ne: seller } }) || await jobModel.find({ Seller:  '' });
+    if (!jobs) throw new Error("No jobs found");
+    return jobs;
+  } catch (error) {
+    console.error('Error getting all jobs from database:', error);
+    throw error;
+  }
+}
+
 async function editJob(jobId, updatedJobData) {
   try {
     return await jobModel.findByIdAndUpdate(jobId, updatedJobData, { new: true });
@@ -66,10 +92,25 @@ async function deleteJob(jobId) {
   }
 }
 
+async function addSellerToJob(jobId, sellerEmail) {
+  try {
+    job = await jobModel.findById(jobId);
+    if (!job) throw new Error("No job found");
+    const updateData = { Seller: sellerEmail };
+    return await jobModel.findByIdAndUpdate(jobId, updateData, { new: true });
+  } catch (error) {
+    console.error('Error adding seller to job in database:', error);
+    throw error;
+  }
+}
+
 module.exports = {
   addJob,
   getAllJobs,
   editJob,
   getAllJobsByBuyer,
   deleteJob,
+  getAllJobsExceptSeller,
+  addSellerToJob,
+  getAllJobsWhereSeller
 };

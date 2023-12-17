@@ -20,6 +20,9 @@ final addGig = gigUrl + "add";
 final updateGig = gigUrl + "edit/";
 final getgigbyemail = gigUrl + "getallgigs/";
 final deleteGig = gigUrl + "delete/";
+final addBuyerToGigUrl = gigUrl + "addBuyertoGig/";
+final getAllExceptBuyer = gigUrl + "getAllExceptBuyer/";
+final getAllWhereBuyer = gigUrl + "getallgigswherebuyer/";
 //                     Gig's API Calls
 
 //                     Job's API Calls
@@ -29,6 +32,9 @@ final addJob = jobUrl + "add";
 final updateJob = jobUrl + "edit/";
 final getjobbyemail = jobUrl + "getalljobs/";
 final deleteJob = jobUrl + "delete/";
+final getalljobsExceptSeller = jobUrl + "getalljobsExceptSeller/";
+final getalljobswhereSeller =  jobUrl + "getAllwhereSeller/";
+final addSellerToJobUrl = jobUrl + "addSellertojob/";
 //                     Job's API Calls
 
 //                     category's API Calls

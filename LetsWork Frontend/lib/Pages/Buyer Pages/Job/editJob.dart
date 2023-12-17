@@ -115,7 +115,7 @@ class _EditJobBottomSheetState extends State<EditJobBottomSheet> {
           onPressed: () async {
             DateTime? pickedDate = await showDatePicker(
               context: context,
-              initialDate: selectedDate ?? DateTime.now(),
+              initialDate: selectedDate,
               firstDate: DateTime.now(),
               lastDate: DateTime(2101),
             );
@@ -126,8 +126,9 @@ class _EditJobBottomSheetState extends State<EditJobBottomSheet> {
             }
           },
           child: Text(
+            // ignore: unnecessary_null_comparison
             selectedDate != null
-                ? 'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate!)}'
+                ? 'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}'
                 : 'Select Date',
           ),
         ),

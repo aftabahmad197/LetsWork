@@ -29,7 +29,6 @@ class _signupState extends State<signup> {
   bool _obscurePassword = true; // Controls password visibility
   bool _obscureConfirmPassword = true; // Controls confirm password visibility
   final _formKey = GlobalKey<FormState>();
-  String _lowercaseEmail = '';
 
   //                     Variables
 
@@ -80,9 +79,7 @@ class _signupState extends State<signup> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     double containerWidth = screenWidth * 0.8;
-    double containerHeight = screenHeight * 0.5;
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -169,7 +166,6 @@ class _signupState extends State<signup> {
                               onChanged: (value) {
                                 setState(() {
                                   // Convert the entered email to lowercase and update the variable
-                                  _lowercaseEmail = value.toLowerCase();
                                 });
                               },
                               validator: (value) {

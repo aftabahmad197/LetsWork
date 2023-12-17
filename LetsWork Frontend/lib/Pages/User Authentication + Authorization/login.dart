@@ -27,7 +27,6 @@ class _loginState extends State<login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String _lowercaseEmail = '';
   bool _obscurePassword = true;
   late SharedPreferences prefs;
 
@@ -86,7 +85,6 @@ class _loginState extends State<login> {
           MaterialPageRoute(builder: (context) => sellerMain(token: myToken)),
         );
       }
-      print(user);
     } else {
       // Registration failed
       print("Login Failed. Please try again.");
@@ -136,7 +134,6 @@ class _loginState extends State<login> {
                               onChanged: (value) {
                                 setState(() {
                                   // Convert the entered email to lowercase and update the variable
-                                  _lowercaseEmail = value.toLowerCase();
                                 });
                               },
                               validator: (value) {
